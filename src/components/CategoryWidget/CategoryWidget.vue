@@ -6,11 +6,26 @@
     </header>
 
     <ul class="CA-CategoryWidget--List">
-      <li class="CA-CategoryWidget--ListItem" v-for="category in categories" v-on:click="onCategoryClick(category.name)">
-        <p class="CA-CategoryWidget--ListItem-Name">{{category.name}}</p>
-        <span class="CA-CategoryWidget--ListItem-Value">{{category.shortenValue}}</span>
+      <li
+        class="CA-CategoryWidget--ListItem"
+        v-for="category in categories"
+        v-on:click="onCategoryClick(category.name)"
+        v-bind:key="category.name"
+      >
+        <p class="CA-CategoryWidget--ListItem-Name">
+          {{category.name}}
+        </p>
+
+        <span class="CA-CategoryWidget--ListItem-Value">
+          {{readableNumber(category.value)}}
+        </span>
+
         <div class="CA-CategoryWidget--ListItem-Progress">
-          <span class="CA-CategoryWidget--ListItem-ProgressBar" v-bind:class="{ 'u-active': selected.length === 0 || selected.includes(category.name) }" v-bind:style="{ width: `${category.percentage}%` }"></span>
+          <span
+            class="CA-CategoryWidget--ListItem-ProgressBar"
+            v-bind:class="{ 'u-active': isSelected(category.name) }"
+            v-bind:style="{ width: `${getPercentage(category.value)}%` }"
+          ></span>
         </div>
       </li>
     </ul>
@@ -22,34 +37,44 @@
 
   export default {
     props: ['title', 'description', 'data', 'max'],
+
     data: function () {
       return {
         selected: [],
       };
     },
+
     computed: {
-      categories: function () {
-        const categories = JSON.parse(this.data);
-        return categories.map(category => ({
-          ...category,
-          shortenValue: NumbersUtils.short(category.value),
-          percentage: category.value / this.max * 100,
-          selected: this.selected.includes(category.name)
-        }))
+      categories() {
+        return JSON.parse(this.data);
       },
     },
+
     methods: {
-      onCategoryClick: function (categoryName) {
+      onCategoryClick(categoryName) {
         this._toggleSelected(categoryName);
         this.$emit('onCategoryClicked', this.selected);
       },
-      _toggleSelected: function (categoryName) {
-        const nextSelected = this.selected.includes(categoryName)
-          ? this.selected.filter(category => category !== categoryName)
-          : [...this.selected, categoryName];
 
-        this.selected = nextSelected;
-      }
+      getPercentage(value) {
+        return value / this.max * 100
+      },
+
+      isSelected(name) {
+        return this.selected.length === 0 || this.selected.includes(name)
+      },
+
+      readableNumber(value) {
+        return NumbersUtils.short(value);
+      },
+
+      _toggleSelected(categoryName) {
+        const index = this.selected.indexOf(categoryName);
+
+        index !== -1
+          ? this.selected.splice(index, 1)
+          : this.selected.push(categoryName);
+      },
     }
   }
 </script>
