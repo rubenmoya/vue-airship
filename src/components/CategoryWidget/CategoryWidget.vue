@@ -8,23 +8,23 @@
     <ul class="CA-CategoryWidget--List">
       <li
         class="CA-CategoryWidget--ListItem"
-        v-for="category in categories"
-        v-on:click="onCategoryClick(category.name)"
-        v-bind:key="category.name"
+        v-for="({ name, value }) in categories"
+        @click="onCategoryClick(name)"
+        :key="name"
       >
         <p class="CA-CategoryWidget--ListItem-Name">
-          {{category.name}}
+          {{name}}
         </p>
 
         <span class="CA-CategoryWidget--ListItem-Value">
-          {{readableNumber(category.value)}}
+          {{readableNumber(value)}}
         </span>
 
         <div class="CA-CategoryWidget--ListItem-Progress">
           <span
             class="CA-CategoryWidget--ListItem-ProgressBar"
-            v-bind:class="{ 'u-active': isSelected(category.name) }"
-            v-bind:style="{ width: `${getPercentage(category.value)}%` }"
+            :class="{ 'u-active': isSelected(name) }"
+            :style="{ width: `${getPercentage(value)}%` }"
           ></span>
         </div>
       </li>
@@ -74,6 +74,10 @@
         index !== -1
           ? this.selected.splice(index, 1)
           : this.selected.push(categoryName);
+
+        if (this.selected.length === this.categories.length) {
+          this.selected = [];
+        }
       },
     }
   }
