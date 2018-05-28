@@ -9,7 +9,9 @@
     "vue": "^2.5.16"
   },
   "scripts": {
-    "build:category": "vue-cli-service build --target wc --name category-widget ./src/components/CategoryWidget/index.js",
-    "watch:category": "vue-cli-service build --target wc-async --name category-widget ./src/components/CategoryWidget/index.js --watch"
+    "build:category": "vue-cli-service build --target wc --name category-widget ./src/components/CategoryWidget/index.js --dest ./dist/category",
+    "watch:category": "npm run build:category --watch",
+    "build:toggle": "vue-cli-service build --target wc --name toggle-button ./src/components/ToggleButton/index.js --dest ./dist/toggle",
+    "watch:toggle": "npm run build:toggle -- --watch"
   }
 }

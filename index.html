@@ -19,7 +19,8 @@
     <!--Load the web component polyfill-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-lite.js"></script>
     <!--Load your custom element-->
-    <script src="./dist/category-widget.js"></script>
+    <script src="./dist/category/category-widget.js"></script>
+    <script src="./dist/toggle/toggle-button.js"></script>
 
     <!--Use your custom element-->
     <category-widget
@@ -30,11 +31,19 @@
       max="359029623"
     ></category-widget>
 
+    <toggle-button id="toggleButton" default="true" label="Airbnb Listings"></toggle-button>
+
     <script>
       const categoryWidget = document.getElementById('categoryWidget')
 
       categoryWidget.addEventListener('onCategoryClicked', function (event) {
         console.log('Category clicked!!!', event.detail[0]);
+      });
+
+      const toggleButton = document.getElementById('toggleButton')
+
+      toggleButton.addEventListener('onToggle', function (event) {
+        console.log('Toggle changed!!!', event.detail[0].target.checked);
       });
     </script>
   </body>
