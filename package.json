@@ -10,6 +10,6 @@
   },
   "scripts": {
     "build:category": "vue-cli-service build --target wc --name category-widget ./src/components/CategoryWidget/index.js",
-    "watch:category": "vue-cli-service build --target wc --name category-widget ./src/components/CategoryWidget/index.js --watch"
+    "watch:category": "vue-cli-service build --target wc-async --name category-widget ./src/components/CategoryWidget/index.js --watch"
   }
 }
