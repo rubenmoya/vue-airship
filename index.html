@@ -21,8 +21,8 @@
     <script>
       const categoryWidget = document.getElementById('categoryWidget')
 
-      categoryWidget.addEventListener('onCategoryChanged', function (event) {
-        console.log('Category clicked!!!', event)
+      categoryWidget.addEventListener('onCategoryClicked', function (event) {
+        console.log('Category clicked!!!', event.detail[0])
       });
     </script>
   </body>
