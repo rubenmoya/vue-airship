@@ -9,6 +9,7 @@
     "vue": "^2.5.16"
   },
   "scripts": {
-    "build:category": "vue-cli-service build --target wc --name category-widget ./src/components/CategoryWidget/index.js"
+    "build:category": "vue-cli-service build --target wc --name category-widget ./src/components/CategoryWidget/index.js",
+    "watch:category": "vue-cli-service build --target wc --name category-widget ./src/components/CategoryWidget/index.js --watch"
   }
 }
