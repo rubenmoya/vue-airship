@@ -29,13 +29,22 @@
   import NumbersUtils from '../../utils/numbers';
 
   export default {
-    props: ['title', 'description', 'data', 'max'],
-
-    data: function () {
-      return {
-        selected: [],
-      };
-    },
+    props: [{
+      data: {
+        type: String,
+        default: '[]'
+      },
+      max: {
+        type: String,
+        default: '0'
+      },
+      selected: {
+        type: Array,
+        default: function () {
+          return []
+        }
+      }
+    }],
 
     computed: {
       categories() {
@@ -47,10 +56,6 @@
       onCategoryClick(categoryName) {
         this._toggleSelected(categoryName);
         this.$emit('onCategoryClicked', this.selected);
-      },
-
-      getSelected() {
-        return this.selected;
       },
 
       getPercentage(value) {

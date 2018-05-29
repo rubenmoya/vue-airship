@@ -675,7 +675,7 @@ function normalizeComponent (
   }
 }
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CategoryWidget/CategoryWidget.vue?vue&type=template&id=5910de51
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CategoryWidget/CategoryWidget.vue?vue&type=template&id=3023cefc
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"CA-CategoryWidget--List"},_vm._l((_vm.categories),function(ref){
 var name = ref.name;
 var value = ref.value;
@@ -683,7 +683,7 @@ return _c('li',{key:name,staticClass:"CA-CategoryWidget--ListItem",on:{"click":f
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/CategoryWidget/CategoryWidget.vue?vue&type=template&id=5910de51
+// CONCATENATED MODULE: ./src/components/CategoryWidget/CategoryWidget.vue?vue&type=template&id=3023cefc
 
 // CONCATENATED MODULE: ./src/utils/numbers.js
 /* harmony default export */ var numbers = ({
@@ -730,13 +730,22 @@ var staticRenderFns = []
 
 
 /* harmony default export */ var CategoryWidgetvue_type_script_lang_js = ({
-  props: ['title', 'description', 'data', 'max'],
-
-  data: function () {
-    return {
-      selected: [],
-    };
-  },
+  props: [{
+    data: {
+      type: String,
+      default: '[]'
+    },
+    max: {
+      type: String,
+      default: '0'
+    },
+    selected: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    }
+  }],
 
   computed: {
     categories() {
@@ -748,10 +757,6 @@ var staticRenderFns = []
     onCategoryClick(categoryName) {
       this._toggleSelected(categoryName);
       this.$emit('onCategoryClicked', this.selected);
-    },
-
-    getSelected() {
-      return this.selected;
     },
 
     getPercentage(value) {
