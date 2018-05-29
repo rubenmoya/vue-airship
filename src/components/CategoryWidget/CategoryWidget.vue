@@ -29,7 +29,7 @@
   import NumbersUtils from '../../utils/numbers';
 
   export default {
-    props: [{
+    props: {
       data: {
         type: String,
         default: '[]'
@@ -44,7 +44,7 @@
           return []
         }
       }
-    }],
+    },
 
     computed: {
       categories() {
