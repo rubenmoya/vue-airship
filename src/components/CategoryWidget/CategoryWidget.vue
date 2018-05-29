@@ -1,35 +1,28 @@
 <template>
-  <section class="CA-CategoryWidget">
-    <header>
-      <h1 class="CA-CategoryWidget--Title">{{title}}</h1>
-      <p class="CA-CategoryWidget--Description">{{description}}</p>
-    </header>
+  <ul class="CA-CategoryWidget--List">
+    <li
+      class="CA-CategoryWidget--ListItem"
+      v-for="({ name, value }) in categories"
+      @click="onCategoryClick(name)"
+      :key="name"
+    >
+      <p class="CA-CategoryWidget--ListItem-Name">
+        {{name}}
+      </p>
 
-    <ul class="CA-CategoryWidget--List">
-      <li
-        class="CA-CategoryWidget--ListItem"
-        v-for="({ name, value }) in categories"
-        @click="onCategoryClick(name)"
-        :key="name"
-      >
-        <p class="CA-CategoryWidget--ListItem-Name">
-          {{name}}
-        </p>
+      <span class="CA-CategoryWidget--ListItem-Value">
+        {{readableNumber(value)}}
+      </span>
 
-        <span class="CA-CategoryWidget--ListItem-Value">
-          {{readableNumber(value)}}
-        </span>
-
-        <div class="CA-CategoryWidget--ListItem-Progress">
-          <span
-            class="CA-CategoryWidget--ListItem-ProgressBar"
-            :class="{ 'u-active': isSelected(name) }"
-            :style="{ width: `${getPercentage(value)}%` }"
-          ></span>
-        </div>
-      </li>
-    </ul>
-  </section>
+      <div class="CA-CategoryWidget--ListItem-Progress">
+        <span
+          class="CA-CategoryWidget--ListItem-ProgressBar"
+          :class="{ 'u-active': isSelected(name) }"
+          :style="{ width: `${getPercentage(value)}%` }"
+        ></span>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -84,34 +77,6 @@
 </script>
 
 <style>
-  .CA-CategoryWidget {
-    width: 296px;
-    box-sizing: border-box;
-    text-align: left;
-    background: rgb(255, 255, 255);
-    padding: 24px;
-  }
-
-  .CA-CategoryWidget--Title {
-    color: rgb(44, 44, 44);
-    font-family: Roboto, sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-    line-height: 24px;
-    margin: 0px;
-  }
-
-  .CA-CategoryWidget--Description {
-    font-family: Roboto, sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    font-size: 12px;
-    line-height: 16px;
-    color: rgb(116, 116, 116);
-    margin: 0px 0px 12px;
-  }
-
   .CA-CategoryWidget--List {
     padding: 0px;
     list-style: none;
