@@ -675,7 +675,7 @@ function normalizeComponent (
   }
 }
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CategoryWidget/CategoryWidget.vue?vue&type=template&id=cec2b4b4
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CategoryWidget/CategoryWidget.vue?vue&type=template&id=82b60b26
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"CA-CategoryWidget--List"},_vm._l((_vm.categories),function(ref){
 var name = ref.name;
 var value = ref.value;
@@ -683,7 +683,7 @@ return _c('li',{key:name,staticClass:"CA-CategoryWidget--ListItem",on:{"click":f
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/CategoryWidget/CategoryWidget.vue?vue&type=template&id=cec2b4b4
+// CONCATENATED MODULE: ./src/components/CategoryWidget/CategoryWidget.vue?vue&type=template&id=82b60b26
 
 // CONCATENATED MODULE: ./src/utils/numbers.js
 /* harmony default export */ var numbers = ({
@@ -779,7 +779,7 @@ var staticRenderFns = []
         : this.selected.push(categoryName);
 
       if (this.selected.length === this.categories.length) {
-        this.selected = [];
+        this.selected.splice(0, this.selected.length);
       }
     },
   }

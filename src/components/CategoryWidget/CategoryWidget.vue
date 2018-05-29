@@ -78,7 +78,7 @@
           : this.selected.push(categoryName);
 
         if (this.selected.length === this.categories.length) {
-          this.selected = [];
+          this.selected.splice(0, this.selected.length);
         }
       },
     }
