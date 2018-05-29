@@ -49,6 +49,10 @@
         this.$emit('onCategoryClicked', this.selected);
       },
 
+      getSelected() {
+        return this.selected;
+      },
+
       getPercentage(value) {
         return value / this.max * 100
       },
